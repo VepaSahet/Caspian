@@ -11,10 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'AnasayfaController@index')->name('anasayfa');
 
-Route::get('/urun/{isim}/{id}' , function($urunadi, $id) {
-    return "Ürün Adı:  $id $urunadi";
-});
