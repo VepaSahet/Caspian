@@ -8,6 +8,7 @@
         <title>Eticaret Projesi</title>
     </head>
     <body>
-        Merhaba
+        Merhaba {{$isim .' '. $soyisim}}
     </body>
 </html>
+
