@@ -9,7 +9,7 @@ class AnasayfaController extends Controller
 {
     public function index()
     {
-        $kategoriler = Kategori::all()->take(8);  //KATEGORİYİ SINIRLAMAK İÇİN take(limit) kullanılıyor
+        $kategoriler = Kategori::whereRaw('ust_id is null')->take(8)->get();  //KATEGORİYİ SINIRLAMAK İÇİN take(limit) kullanılıyor
        // $kategoriler = Kategori::all();
         return view('anasayfa',compact('kategoriler'));
     }
