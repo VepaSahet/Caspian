@@ -19,6 +19,8 @@ class CreateKategoriTable extends Migration
             $table->string('slug', 40);
             $table->timestamp('olusturulma_tarihi')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('guncelleme_tarihi')->default(DB::raw('CURRENT_TIMESTAMP on UPDATE CURRENT_TIMESTAMP'));
+           // $table->softDeletes();
+            $table->timestamp('silinme_tarihi')->nullable();
         });
     }
 
