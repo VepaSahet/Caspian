@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Mail;
 
 class KullaniciController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest')->except('oturumukapat');
+    }
+
     public function giris_form()
     {
         return view('kullanici.oturumac');
@@ -78,5 +83,13 @@ class KullaniciController extends Controller
                 ->with('mesaj', 'Kullanıcı kaydınız aktifleştirilmedi')
                 ->with('mesaj_tur', 'warning');
         }
+    }
+
+    public function oturumukapat()
+    {
+        auth()->logout();
+        request()->session()->flush();
+        request()->session()->regenerate();
+        return redirect()->route('anasayfa');
     }
 }
