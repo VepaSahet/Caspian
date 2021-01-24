@@ -37092,7 +37092,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 
 setTimeout(function () {
   $('.alert').slideUp(500);
-}, 3000);
+}, 5000);
 
 /***/ }),
 
