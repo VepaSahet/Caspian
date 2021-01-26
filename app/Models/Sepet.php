@@ -17,4 +17,9 @@ class Sepet extends Model
     const UPDATED_AT = 'guncelleme_tarihi';
     const DELETED_AT = 'silinme_tarihi';
 
+    public function siparis()
+    {
+        return $this->hasOne('App\Models\Siparis');
+    }
+
 }

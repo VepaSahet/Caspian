@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kullanici;
 use App\Mail\KullaniciKayitMail;
+use App\Models\KullaniciDetay;
 use App\Models\Sepet;
 use App\Models\SepetUrun;
 use Cart;
@@ -84,6 +85,7 @@ class KullaniciController extends Controller
                 'aktivasyon_anahtari' => Str::random(60),
                 'aktif_mi'            => 0
         ]);
+        $kullanici->detay()->save(new KullaniciDetay());
 
         Mail::to(request('email'))->send(new KullaniciKayitMail($kullanici));
 
