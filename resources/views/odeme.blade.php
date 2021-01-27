@@ -5,6 +5,7 @@
         <div class="bg-content">
             <h2>Ödeme</h2>
             <form action="{{ route('odemeyap') }}" method="post">
+                {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-5">
                     <h3>Ödeme Bilgileri</h3>
@@ -54,7 +55,7 @@
                 </div>
                 <div class="col-md-7">
                     <h4>Ödenecek Tutar</h4>
-                    <span class="price">{{ Cart::total() }} <small>TL</small></span>
+                    <span class="price">{{ Cart::total() }} <small>TMT</small></span>
 
                     <h4>İletişim ve Fatura Bilgileri</h4>
                     <div class="row">
@@ -71,7 +72,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -86,7 +86,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             </form>
@@ -94,7 +93,8 @@
     </div>
 @endsection
 @section('footer')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.js"></script>
     <script>
         $('.kredikarti').mask('0000-0000-0000-0000', { placeholder: "____-____-____-____" });
         $('.kredikarti_cvv').mask('000', { placeholder: "___" });
