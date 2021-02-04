@@ -1,15 +1,23 @@
 <?php
+Route::group(['prefix'=>'yonetim', 'namespace'=>'Yonetim'], function (){
+    Route::redirect('/', 'yonetim/oturumac');
+    Route::match(['get','post'],'/oturumac', 'KullaniciController@oturumac')->name('yonetim.oturumac');
+    Route::get('/oturumukapat', 'KullaniciController@oturumukapat')->name('yonetim.oturumukapat');
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+    Route::group(['middleware'=> 'yonetim'], function() {
+        Route::get('/anasayfa', 'AnasayfaController@index')->name('yonetim.anasayfa');
+
+        // /yonetim/kullanici/yeni
+        Route::group(['prefix' => 'kullanici'], function (){
+            Route::match(['get', 'post'], '/', 'KullaniciController@index')->name('yonetim.kullanici');
+            Route::get('/yeni', 'KullaniciController@form')->name('yonetim.kullanici.yeni');
+            Route::get('/duzenle/{id}', 'KullaniciController@form' )-> name('yonetim.kullanici.duzenle');
+            Route::post('/kaydet/{id?}', 'KullaniciController@kaydet')->name('yonetim.kullanici.kaydet');
+            Route::get('/sil/{id}', 'KullaniciController@sil' )-> name('yonetim.kullanici.sil');
+        });
+
+    });
+});
 
 Route::get('/', 'AnasayfaController@index')->name('anasayfa');
 
