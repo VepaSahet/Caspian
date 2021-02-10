@@ -36,6 +36,9 @@
             </tr>
             </thead>
             <tbody>
+            @if(count($list)== 0)
+                <tr><td colspan="7" class="text-center">Kayıt bulunamadı!</td></tr>
+            @endif
             @foreach($list as $entry)
             <tr>
                 <td>{{ $entry->id }}</td>
