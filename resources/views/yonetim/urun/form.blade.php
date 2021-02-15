@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="page-header">Ürün Yönetimi</h1>
 
-    <form method="post" action="{{route('yonetim.urun.kaydet', $entry->id)}}">
+    <form method="post" action="{{route('yonetim.urun.kaydet', $entry->id)}}" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="pull-right">
         <button type="submit" class="btn btn-primary">
@@ -70,5 +70,39 @@
                 <input type="checkbox" name="goster_indirimli" value="1" {{old('goster_indirimli', $entry->detay->goster_indirimli) ? 'checked' : ''}}> İndirimli Ürünlerde Göster
             </label>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="kategoriler">Kategoriler</label>
+                    <select name="kategoriler[]" class="form-control" id="kategoriler" multiple>
+                        @foreach($kategoriler as $kategori)
+                            <option value="{{ $kategori->id }}" {{ collect(old('kategoriler', $urun_kategorileri))->contains($kategori->id) ? 'selected': '' }}>
+                                {{ $kategori->kategori_adi }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="urun_resmi">Ürün Resmi</label>
+            <input type="file" id="urun_resmi" name="urun_resmi">
+        </div>
+
+
+
     </form>
+@endsection
+@section('head')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
+@section('footer')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(function() {
+            $('#kategoriler').select2({
+                placeholder: 'Lütfen kategori seçiniz'
+            });
+        });
+    </script>
 @endsection
