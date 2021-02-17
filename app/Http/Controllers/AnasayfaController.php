@@ -43,6 +43,7 @@ class AnasayfaController extends Controller
             ->orderBy('guncelleme_tarihi', 'desc')
             ->take(4)->get();
 
+
         return view('anasayfa',compact('kategoriler','urunler_slider','urun_gunun_firsati',
             'urunler_one_cikan','urunler_cok_satan','urunler_indirimli'));
     }

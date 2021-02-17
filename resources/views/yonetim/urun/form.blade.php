@@ -85,11 +85,13 @@
             </div>
         </div>
         <div class="form-group">
+            @if ($entry->detay->urun_resmi!=null)
+                <img src="/uploads/urunler/{{ $entry->detay->urun_resmi }}"
+                     style="height: 100px; margin-right: 20px;" class="thumbnail pull-left">
+            @endif
             <label for="urun_resmi">Ürün Resmi</label>
             <input type="file" id="urun_resmi" name="urun_resmi">
         </div>
-
-
 
     </form>
 @endsection
@@ -97,12 +99,19 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 @section('footer')
+    <script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(function() {
             $('#kategoriler').select2({
                 placeholder: 'Lütfen kategori seçiniz'
             });
+
+            var options = {
+                uiColor: '#f4645f',
+                language: 'tr'
+            };
+            CKEDITOR.replace('aciklama', options);
         });
     </script>
 @endsection

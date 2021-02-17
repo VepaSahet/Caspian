@@ -56,8 +56,7 @@ class UrunController extends Controller
             'slug'          =>(request('original_slug') != request('slug') ? 'unique:urun,slug' : '')
         ]);
 
-        $data_detay = request()->only('goster_slider',
-            'goster_gunun_firsati', 'goster_one_cikan', 'goster_cok_satan', 'goster_indirimli');
+        $data_detay = request()->only('goster_slider', 'goster_gunun_firsati', 'goster_one_cikan', 'goster_cok_satan', 'goster_indirimli');
 
         $kategoriler = request('kategoriler');
 
@@ -73,8 +72,7 @@ class UrunController extends Controller
             $entry->kategoriler()->attach($kategoriler);
         }
 
-        if (request()->hasFile('urun_resmi'))
-        {
+        if (request()->hasFile('urun_resmi')) {
             $this->validate(request(), [
                 'urun_resmi' => 'image|mimes:jpg,png,jpeg,gif|max:2048'
             ]);
@@ -86,8 +84,7 @@ class UrunController extends Controller
             //$dosyaadi = $urun_resmi->getClientOriginalName();
             //$dosyaadi = $urun_resmi->hashName();
 
-            if ($urun_resmi->isValid())
-            {
+            if ($urun_resmi->isValid()) {
                 $urun_resmi->move('uploads/urunler', $dosyaadi);
 
                 UrunDetay::updateOrCreate(
