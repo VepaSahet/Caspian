@@ -11,19 +11,19 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{{ $kategori->kategori_adi }}</div>
                     <div class="panel-body">
+                        Toplam {{ $kategori->urunler->count() }} ürün var.
+                        <hr>
                         @if (count($alt_kategoriler)>0)
-                        <h3>Alt Kategoriler</h3>
-                        <div class="list-group categories">
-                            @foreach($alt_kategoriler as $alt_kategori)
-                            <a href="{{route('kategori', $alt_kategori->slug)}}" class="list-group-item">
-                                <i class="fa fa-arrow-circle-right"></i>
-                                {{$alt_kategori->kategori_adi}}
+                    </div>
+                    @else
+                        @if($ust_kategori != null)
+                            <a href="{{ route('kategori', $ust_kategori->slug) }}" class="btn btn-xs btn-block btn-primary">
+                                <i class="fa fa-arrow-circle-left"></i>
+                                {{ $ust_kategori->kategori_adi }}
                             </a>
-                            @endforeach
-                        </div>
-                        @else
-                            Bu kategoride başka alt kategori bulunmamaktadır.
                         @endif
+                            {{ $kategori->kategori_adi }} kategorisinde başka alt kategori bulunmuyor.
+                    @endif
                     </div>
                 </div>
             </div>
@@ -39,17 +39,18 @@
                         @if (count($urunler)==0)
                             <div class="col-md-12">Bu kategoride henüz ürün bulunmamaktadır!</div>
                         @endif
-                        @foreach($urunler as $urun)
-                        <div class="col-md-3 product">
-                            <a href="{{ route('urun', $urun->slug) }}"><img src="http://via.placeholder.com/400x400?text=UrunResmi"></a>
-                            <p><a href="{{ route('urun', $urun->slug) }}">{{$urun->urun_adi}}</a></p>
-                            <p class="price">{{$urun->fiyati}} ₺</p>
-                            <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
-                        </div>
-                        @endforeach
+                            @foreach($urunler as $urun)
+                                <div class="col-md-3 product">
+                                    <a href="{{ route('urun', $urun->slug) }}">
+                                        <img src="{{ $urun->detay->urun_resmi!=null ? asset('uploads/urunler/' . $urun->detay->urun_resmi) : 'http://via.placeholder.com/400x400?text=UrunResmi' }}">
+                                    </a>
+                                    <p><a href="{{ route('urun', $urun->slug) }}">{{ $urun->urun_adi }}</a></p>
+                                    <p class="price">{{ round($urun->fiyati, 2) }} TMT</p>
+                                    <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                                </div>
+                            @endforeach
                     </div>
-                    {{ request()->has('order') ? $urunler->appends(['order'=>request('order')])->links() :
-                        $urunler->links() }}
+                    {{ request()->has('order') ? $urunler->appends(['order'=>request('order')])->links() : $urunler->links() }}
                 </div>
             </div>
         </div>

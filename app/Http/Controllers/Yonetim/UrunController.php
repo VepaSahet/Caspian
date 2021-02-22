@@ -7,6 +7,7 @@ use App\Models\UrunDetay;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Urun;
+use File;
 
 class UrunController extends Controller
 {
@@ -52,8 +53,8 @@ class UrunController extends Controller
 
         $this->validate(request(),[
             'urun_adi'  =>'required',
-            'fiyati'  =>'required',
-            'slug'          =>(request('original_slug') != request('slug') ? 'unique:urun,slug' : '')
+            'fiyati'    =>'required',
+            'slug'      =>(request('original_slug') != request('slug') ? 'unique:urun,slug' : '')
         ]);
 
         $data_detay = request()->only('goster_slider', 'goster_gunun_firsati', 'goster_one_cikan', 'goster_cok_satan', 'goster_indirimli');
@@ -61,7 +62,7 @@ class UrunController extends Controller
         $kategoriler = request('kategoriler');
 
 
-        if ($id>0) {
+        if ($id > 0) {
             $entry = Urun::where('id', $id)->firstOrFail();
             $entry->update($data);
             $entry->detay()->update($data_detay);
@@ -78,13 +79,15 @@ class UrunController extends Controller
             ]);
 
             $urun_resmi = request()->file('urun_resmi');
-            $urun_resmi = request()->urun_resmi;
+            //$urun_resmi = request()->urun_resmi;
 
             $dosyaadi = $entry->id . "-" . time() . "." . $urun_resmi->extension();
             //$dosyaadi = $urun_resmi->getClientOriginalName();
             //$dosyaadi = $urun_resmi->hashName();
 
             if ($urun_resmi->isValid()) {
+                File::delete('uploads/urunler/' . $entry->detay->urun_resmi);
+
                 $urun_resmi->move('uploads/urunler', $dosyaadi);
 
                 UrunDetay::updateOrCreate(
@@ -103,6 +106,9 @@ class UrunController extends Controller
     public function sil($id)
     {
         $urun = Urun::find($id);
+
+        File::delete('uploads/urunler/' . $urun->detay->urun_resmi);
+
         $urun->kategoriler()->detach();
         // $urun->detay()->delete();
         $urun->delete();

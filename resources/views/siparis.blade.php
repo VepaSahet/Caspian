@@ -6,7 +6,7 @@
             <a  href="{{ route('siparisler') }}" class="btn btn-xs btn-primary">
                 <i class="glyphicon glyphicon-arrow-left"></i> Siparişlere Dön
             </a>
-            <h2>Sipariş (SP-{{ $siparis->id }})</h2>
+            <h2>Sipariş (Sargyt-{{ $siparis->id }})</h2>
             <table class="table table-bordererd table-hover">
                 <tr>
                     <th colspan="2">Ürün</th>
@@ -19,7 +19,7 @@
                 <tr>
                     <td style="width: 120px">
                         <a href="{{ route('urun', $sepet_urun->urun->slug) }}">
-                        <img src="http://via.placeholder.com/120x100?text=UrunResmi">
+                            <img src="{{ $sepet_urun->urun->detay->urun_resmi!=null ? asset('uploads/urunler/' . $sepet_urun->urun->detay->urun_resmi) : 'http://via.placeholder.com/120x100?text=UrunResmi' }}" style="height: 120px;">
                         </a>
                     </td>
                     <td>

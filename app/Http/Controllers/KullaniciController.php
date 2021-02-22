@@ -48,16 +48,15 @@ class KullaniciController extends Controller
            }
            session()->put('aktif_sepet_id', $aktif_sepet_id);
 
-           if (Cart::count()>0)
-           {
-               foreach (Cart::content() as $cartItem)
-               {
-                   SepetUrun::updateOrCreate(
-                       ['sepet_id'=> $aktif_sepet_id, 'urun_id'=> $cartItem->id],
-                       ['adet'=>$cartItem->qty, 'fiyati'=> $cartItem->price, 'durum'=> 'Beklemede']
-                   );
-               }
-           }
+            if (Cart::count() > 0) {
+                foreach (Cart::content() as $cartItem) {
+                    $sepetUrun = SepetUrun::firstOrNew(['sepet_id' => $aktif_sepet_id, 'urun_id' => $cartItem->id]);
+                    $sepetUrun->adet += $cartItem->qty;
+                    $sepetUrun->fiyati = $cartItem->price;
+                    $sepetUrun->durum = "Beklemede";
+                    $sepetUrun->save();
+                }
+            }
 
            Cart::destroy();
            $sepetUrunler = SepetUrun::with('urun')->where('sepet_id', $aktif_sepet_id)->get();

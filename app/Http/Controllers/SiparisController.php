@@ -21,10 +21,11 @@ class SiparisController extends Controller
     public  function detay($id)
     {
         $siparis = Siparis::with('sepet.sepet_urunler.urun')
-            ->whereHas('sepet', function ($query){
+            ->whereHas('sepet', function($query){
                 $query->where('kullanici_id', auth()->id());
             })
-            ->where('siparis.id', $id)->firstOrFail();
+            ->where('siparis.id', $id)
+            ->firstOrFail();
         return view('siparis', compact('siparis'));
     }
 

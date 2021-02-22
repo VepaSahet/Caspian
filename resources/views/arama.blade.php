@@ -25,11 +25,11 @@
                                 {{$urun->urun_adi}}
                             </a>
                         </p>
-                        <p class="price">{{$urun->fiyati}} ₺</p>
+                        <p class="price">{{$urun->fiyati}} TMT</p>
                     </div>
                 @endforeach
             </div>
-            {{ $urunler->appends(['aranan'=>old('aranan')])->links() }}
+            {{ $urunler->appends(['aranan' => old('aranan')])->links() }}
         </div>
     </div>
 

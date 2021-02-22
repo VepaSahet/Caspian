@@ -18,8 +18,9 @@ class SepetController extends Controller
 
     public function ekle()
     {
+        $adet = request('adet');
         $urun = Urun::find(request('id'));
-        $cartItem = Cart::add($urun->id, $urun->urun_adi, 1, $urun->fiyati, ['slug'=>$urun->slug]);
+        $cartItem = Cart::add($urun->id, $urun->urun_adi, $adet , $urun->fiyati, ['slug'=>$urun->slug]);
 
         if (auth()->check()) {
             $aktif_sepet_id = session('aktif_sepet_id');
@@ -33,7 +34,7 @@ class SepetController extends Controller
 
             SepetUrun::updateOrCreate(
                 ['sepet_id' => $aktif_sepet_id, 'urun_id' => $urun->id],
-            ['adet'=> $cartItem->qty, 'fiyati'=> $urun->fiyati, 'durum'=> 'Beklemede']
+                ['adet'=> $cartItem->qty, 'fiyati'=> $urun->fiyati, 'durum'=> 'Beklemede']
             );
         }
 
@@ -52,6 +53,7 @@ class SepetController extends Controller
         }
 
         Cart::remove($rowid);
+
         return redirect()->route('sepet')
             ->with('mesaj_tur', 'success')
             ->with('mesaj', 'Ürün sepetten kaldırıldı.');
@@ -80,7 +82,7 @@ class SepetController extends Controller
         if ($validator->fails())
         {
             session()->flash('mesaj_tur', 'danger');
-            session()->flash('mesaj', 'Adet değeri 1 ile 10 arasında olmalıdır.');
+            session()->flash('mesaj', 'Adet değeri 1 ile 10 arasında olabilir!');
             return response()->json(['success'=>false]);
         }
 
@@ -90,7 +92,8 @@ class SepetController extends Controller
             $cartItem = Cart::get($rowid);
 
             if (request('adet')==0)
-                SepetUrun::where('sepet_id', $aktif_sepet_id)->where('urun_id', $cartItem->id)->delete();
+                SepetUrun::where('sepet_id', $aktif_sepet_id)->where('urun_id', $cartItem->id)
+                    ->delete();
             else
                 SepetUrun::where('sepet_id', $aktif_sepet_id)->where('urun_id', $cartItem->id)
                 ->update(['adet'=>request('adet')]);

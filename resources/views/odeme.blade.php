@@ -26,7 +26,7 @@
                             <div class="col-md-6">
                                 Yıl
                                 <select id="son_kullanma_tarihi_yil"  name="son_kullanma_tarihi_yil" class="form-control" required>
-                                    <option>2020</option>
+                                    <option>2021</option>
                                 </select>
                             </div>
                         </div>

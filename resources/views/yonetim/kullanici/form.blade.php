@@ -3,16 +3,16 @@
 @section('content')
     <h1 class="page-header">Kullanıcı Yönetimi</h1>
 
-
-    <form method="post" action="{{route('yonetim.kullanici.kaydet', @$entry->id)}}">
+    <form method="post" action="{{route('yonetim.kullanici.kaydet', $entry->id)}}">
         {{csrf_field()}}
+
         <div class="pull-right">
         <button type="submit" class="btn btn-primary">
-            {{@$entry->id > 0 ? "Güncelle" : "Kaydet"}}
+            {{$entry->id > 0 ? "Güncelle" : "Kaydet"}}
         </button>
         </div>
-        <h2 class="sub-header">Kullanıcı {{@$entry->id > 0 ? "Düzenle" : "Ekle"}}
-        </h2>
+        <h3 class="sub-header">Kullanıcı {{$entry->id > 0 ? "Düzenle" : "Ekle"}}
+        </h3>
 
         @include('layouts.partials.errors')
         @include('layouts.partials.alert')

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Kategori;
 use App\Models\Urun;
 use App\Models\UrunDetay;
 use Illuminate\Database\Seeder;
@@ -35,6 +36,14 @@ class UrunTableSeeder extends Seeder
                 'goster_indirimli'=>rand(0,1)
             ]);
         }
+
+        DB::table('kategori_urun')->truncate();
+        $kategoriler = Kategori::all();
+        foreach ($kategoriler as $kategori) {
+            $urunler = Urun::pluck('id')->random(10)->all();
+            $kategori->urunler()->attach($urunler);
+        }
+
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
     }

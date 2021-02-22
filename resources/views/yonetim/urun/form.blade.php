@@ -5,6 +5,7 @@
 
     <form method="post" action="{{route('yonetim.urun.kaydet', $entry->id)}}" enctype="multipart/form-data">
         {{csrf_field()}}
+
         <div class="pull-right">
         <button type="submit" class="btn btn-primary">
             {{ $entry->id > 0 ? "Güncelle" : "Kaydet"}}
@@ -51,23 +52,23 @@
         <div class="checkbox">
             <label>
                 <input type="hidden" name="goster_slider" value="0">
-                <input type="checkbox" name="goster_slider" value="1" {{old('goster_slider', $entry->detay->goster_slider) ? 'checked' : ''}}> Slider'da Göster
+                <input type="checkbox" name="goster_slider" value="1" {{ old('goster_slider', $entry->detay->goster_slider) ? 'checked' : '' }}> Slider'da Göster
             </label>
             <label>
                 <input type="hidden" name="goster_gunun_firsati" value="0">
-                <input type="checkbox" name="goster_gunun_firsati" value="1" {{old('goster_gunun_firsati', $entry->detay->goster_gunun_firsati) ? 'checked' : ''}}> Günün Fırsatında Göster
+                <input type="checkbox" name="goster_gunun_firsati" value="1" {{ old('goster_gunun_firsati', $entry->detay->goster_gunun_firsati) ? 'checked' : '' }}> Günün Fırsatında Göster
             </label>
             <label>
                 <input type="hidden" name="goster_one_cikan" value="0">
-                <input type="checkbox" name="goster_one_cikan" value="1" {{old('goster_one_cikan', $entry->detay->goster_one_cikan) ? 'checked' : ''}}> Öne Çıkan Alanında Göster
+                <input type="checkbox" name="goster_one_cikan" value="1" {{ old('goster_one_cikan', $entry->detay->goster_one_cikan) ? 'checked' : '' }}> Öne Çıkan Alanında Göster
             </label>
             <label>
                 <input type="hidden" name="goster_cok_satan" value="0">
-                <input type="checkbox" name="goster_cok_satan" value="1" {{old('goster_cok_satan', $entry->detay->goster_cok_satan) ? 'checked' : ''}}> Çok Satan Ürünlerde Göster
+                <input type="checkbox" name="goster_cok_satan" value="1" {{ old('goster_cok_satan', $entry->detay->goster_cok_satan) ? 'checked' : '' }}> Çok Satan Ürünlerde Göster
             </label>
             <label>
                 <input type="hidden" name="goster_indirimli" value="0">
-                <input type="checkbox" name="goster_indirimli" value="1" {{old('goster_indirimli', $entry->detay->goster_indirimli) ? 'checked' : ''}}> İndirimli Ürünlerde Göster
+                <input type="checkbox" name="goster_indirimli" value="1" {{ old('goster_indirimli', $entry->detay->goster_indirimli) ? 'checked' : '' }}> İndirimli Ürünlerde Göster
             </label>
         </div>
         <div class="row">
@@ -109,7 +110,14 @@
 
             var options = {
                 uiColor: '#f4645f',
-                language: 'tr'
+                language: 'tr',
+                extraPlugins: 'autogrow',
+                autoGrow_minHeight: 250,
+                autoGrow_maxHeight: 600,
+                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
             };
             CKEDITOR.replace('aciklama', options);
         });

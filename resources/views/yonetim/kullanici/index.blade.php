@@ -30,7 +30,7 @@
                 <th>Ad Soyad</th>
                 <th>Email</th>
                 <th>Aktif Mi</th>
-                <th>Yönetici Mi</th>
+                <th>Kullanıcı Tipi</th>
                 <th>Kayıt Tarihi</th>
                 <th></th>
             </tr>

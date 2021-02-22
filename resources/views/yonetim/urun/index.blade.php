@@ -49,7 +49,7 @@
                 </td>
                 <td>{{ $entry->slug }}</td>
                 <td>{{ $entry->urun_adi }}</td>
-                <td>{{ $entry->fiyati }}</td>
+                <td>{{ round($entry->fiyati, 2) }} TMT</td>
                 <td>{{ $entry->olusturulma_tarihi }}</td>
                 <td style="width: 100px">
                     <a href="{{ route('yonetim.urun.duzenle', $entry->id) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Düzenle">

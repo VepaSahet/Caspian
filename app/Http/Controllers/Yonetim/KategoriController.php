@@ -18,7 +18,7 @@ class KategoriController extends Controller
                 ->where('kategori_adi','like', "%$aranan%")
                 ->where('ust_id', $ust_id)
                 ->orderByDesc('id')
-                ->paginate(8)
+                ->paginate(2)
                 ->appends(['aranan'=> $aranan, 'ust_id'=>$ust_id]);
 
         }
@@ -66,13 +66,21 @@ class KategoriController extends Controller
 
         return redirect()
             ->route('yonetim.kategori.duzenle', $entry->id)
-            ->with('mesaj', ($id>0 ? 'Güncellendi' : 'Kaydedildi'))
+            ->with('mesaj', ($id > 0 ? 'Güncellendi' : 'Kaydedildi'))
             ->with('mesaj_tur','success');
     }
 
     public function sil($id)
     {
-        $kategori = kategori::find($id);
+        $kategori = Kategori::find($id);
+        $kategori_urun_adet = $kategori->urunler()->count();
+        if ($kategori_urun_adet>0)
+        {
+            return redirect()
+                ->route('yonetim.kategori')
+                ->with('mesaj', "Bu kategoride $kategori_urun_adet adet ürün var. Bu yüzden silme işlemi yapılmamıştır.")
+                ->with('mesaj_tur', 'warning');
+        }
         $kategori->urunler()->detach();
         $kategori->delete();
 

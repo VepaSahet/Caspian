@@ -43,6 +43,14 @@ class Sepet extends Model
 
     public function sepet_urun_adet()
     {
-        return DB::table('sepet_urun')->where('sepet_id', $this->id)->sum('adet');
+        return DB::table('sepet_urun')
+            ->whereRaw('silinme_tarihi is null')
+            ->where('sepet_id', $this->id)
+            ->sum('adet');
+    }
+
+    public function kullanici()
+    {
+        return $this->belongsTo('App\Models\Kullanici');
     }
 }

@@ -42,6 +42,10 @@
                                     <button type="submit" class="btn btn-primary">
                                         Giriş yap
                                     </button>
+
+                                    <a class="btn btn-link" href="#">
+                                        Şifremi Unuttum
+                                    </a>
                                 </div>
                             </div>
                         </form>

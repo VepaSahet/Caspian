@@ -21,10 +21,10 @@ class KullaniciController extends Controller
             ]);
 
             $credentials = [
-                'email' => request()->get('email'),
-                'password' => request()->get('sifre'),
+                'email'       => request()->get('email'),
+                'password'    => request()->get('sifre'),
                 'yonetici_mi' => 1,
-                'aktif_mi' => 1
+                'aktif_mi'    => 1
             ];
 
             if (Auth::guard('yonetim')->attempt($credentials, request()->has('benihatirla')))
@@ -32,7 +32,7 @@ class KullaniciController extends Controller
                 return redirect()->route('yonetim.anasayfa');
             }
             else {
-                return back()->withInput()->withErrors(['email'=>'Giriş hatalı']);
+                return back()->withInput()->withErrors(['email'=>'Giriş hatalı!']);
             }
         }
         return view('yonetim.oturumac');
@@ -41,9 +41,8 @@ class KullaniciController extends Controller
     public function oturumukapat()
     {
         Auth::guard('yonetim')->logout();
-        request()->session()->flush();
-        request()->session()->regenerate();
-
+        //request()->session()->flush();
+        //request()->session()->regenerate();
         return redirect()->route('yonetim.oturumac');
     }
 
@@ -57,7 +56,6 @@ class KullaniciController extends Controller
                 ->orderByDesc('olusturulma_tarihi')
                 ->paginate(8)
                 ->appends('aranan', $aranan);
-
         }
         else {
             $list = Kullanici::orderByDesc('olusturulma_tarihi')->paginate(8);
@@ -99,14 +97,14 @@ class KullaniciController extends Controller
         KullaniciDetay::updateOrCreate(
             ['kullanici_id' => $entry->id],
             [
-                'adres' =>request('adres'),
-                'telefon' => request('telefon'),
+                'adres'       =>request('adres'),
+                'telefon'     => request('telefon'),
                 'ceptelefonu' => request('ceptelefonu')
             ]
         );
         return redirect()
             ->route('yonetim.kullanici.duzenle', $entry->id)
-            ->with('mesaj', ($id>0 ? 'Güncellendi' : 'Kaydedildi'))
+            ->with('mesaj', ($id > 0 ? 'Güncellendi' : 'Kaydedildi'))
             ->with('mesaj_tur', 'success');
     }
 
