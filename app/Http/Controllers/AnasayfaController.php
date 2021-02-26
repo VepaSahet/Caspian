@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Urun;
-use App\Models\UrunDetay;
-use Illuminate\Http\Request;
 use App\Models\Kategori;
+use App\Models\Urun;
+
 
 class AnasayfaController extends Controller
 {
     public function index()
     {
-        $kategoriler = Kategori::whereRaw('ust_id is null')->take(8)->get();  //KATEGORİYİ SINIRLAMAK İÇİN take(limit) kullanılıyor
+        $kategoriler = Kategori::whereRaw('ust_id is null')->take(8)->get();
 
         $urunler_slider = Urun::select('urun.*')
             ->join('urun_detay','urun_detay.urun_id', 'urun_id')
-            ->where('urun_detay.goster_slider',1)
+            ->where('urun_detay.goster_slider', 1)
             ->orderBy('guncelleme_tarihi', 'desc')
             ->take(config('ayar.anasayfa_slider_urun_adet'))->get();
 

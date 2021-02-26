@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Yonetim;
 
-use App\Models\Kategori;
-use App\Models\UrunDetay;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use App\Models\Urun;
+use App\Models\UrunDetay;
 use File;
 
 class UrunController extends Controller

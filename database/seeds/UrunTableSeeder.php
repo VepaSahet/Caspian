@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Kategori;
+//use App\Models\Kategori;
 use App\Models\Urun;
 use App\Models\UrunDetay;
 use Illuminate\Database\Seeder;
@@ -16,15 +16,16 @@ class UrunTableSeeder extends Seeder
     public function run(Faker\Generator $faker)
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         Urun::truncate();
         UrunDetay::truncate();
 
         for($i = 0; $i < 30; $i++){
-            $urun_adi = $faker->sentence(2);
+            $urun_adi = $faker->streetName;
             $urun = Urun::create([
                 'urun_adi' => $urun_adi,
                 'slug' => str_slug($urun_adi),
-                'aciklama' =>$faker->sentence(20),
+                'aciklama' =>$faker->paragraph(20),
                 'fiyati' =>$faker->randomFloat(3,1,20)
             ]);
 
