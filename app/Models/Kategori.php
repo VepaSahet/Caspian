@@ -9,7 +9,7 @@ class Kategori extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'kategori';
+    protected $table = "kategori";
     //protected $fillable = ['kategori_adi', 'slug'];
     protected $guarded = [];
     const CREATED_AT = 'olusturulma_tarihi';

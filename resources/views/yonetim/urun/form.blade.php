@@ -72,7 +72,7 @@
             </label>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label for="kategoriler">Kategoriler</label>
                     <select name="kategoriler[]" class="form-control" id="kategoriler" multiple>
