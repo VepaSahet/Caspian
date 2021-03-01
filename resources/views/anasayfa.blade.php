@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Kategoriler</div>
+                    <div class="panel-heading">Kategoriýalar</div>
                     <div class="list-group categories">
                         @foreach($kategoriler as $kategori)
                         <a href="{{ route('kategori', $kategori->slug) }}" class="list-group-item">
@@ -38,17 +38,17 @@
                     </div>
                     <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
+                        <span class="sr-only">Öňki</span>
                     </a>
                     <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
+                        <span class="sr-only">Indiki</span>
                     </a>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="panel panel-default" id="sidebar-product">
-                    <div class="panel-heading">Günün Fırsatı</div>
+                    <div class="panel-heading">Günüň Pursady</div>
                     <div class="panel-body">
                         <a href="{{ route('urun', $urun_gunun_firsati->slug) }}">
                             <img src="{{ $urun_gunun_firsati->detay->urun_resmi!=null ? asset('uploads/urunler/' . $urun_gunun_firsati->detay->urun_resmi) : 'http://via.placeholder.com/400x485?text=UrunResmi' }}" class="img-responsive" style="min-width: 100%;">
@@ -62,7 +62,7 @@
     <div class="container">
         <div class="products">
             <div class="panel panel-theme">
-                <div class="panel-heading">Öne Çıkan Ürünler</div>
+                <div class="panel-heading">Köp görülen harytlar</div>
                 <div class="panel-body">
                     <div class="row">
                         @foreach($urunler_one_cikan as $urun)
@@ -81,7 +81,7 @@
         <hr>
         <div class="products">
             <div class="panel panel-theme">
-                <div class="panel-heading">Çok Satan Ürünler</div>
+                <div class="panel-heading">Öňe çykan harytlar</div>
                 <div class="panel-body">
                     <div class="row">
                         @foreach($urunler_cok_satan as $urun)
@@ -99,7 +99,7 @@
         </div>
         <div class="products">
             <div class="panel panel-theme">
-                <div class="panel-heading">İndirimli Ürünler</div>
+                <div class="panel-heading">Arzanladyşdaky harytlar</div>
                 <div class="panel-body">
                     <div class="row">
                         @foreach($urunler_indirimli as $urun)

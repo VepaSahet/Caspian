@@ -98,7 +98,7 @@ class UrunController extends Controller
 
         return redirect()
             ->route('yonetim.urun.duzenle', $entry->id)
-            ->with('mesaj', ($id > 0 ? 'Güncellendi' : 'Kaydedildi'))
+            ->with('mesaj', ($id > 0 ? 'Täzelendi' : 'Hasaba alyndy'))
             ->with('mesaj_tur','success');
     }
 
@@ -114,7 +114,7 @@ class UrunController extends Controller
 
         return redirect()
             ->route('yonetim.urun')
-            ->with('mesaj','Kayıt silindi')
+            ->with('mesaj','Hasaba alyş öçürildi')
             ->with('mesaj_tur', 'success');
     }
 }

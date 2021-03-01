@@ -14,13 +14,13 @@ class OdemeController extends Controller
         {
             return  redirect()->route('kullanici.oturumac')
                 ->with('mesaj_tur', 'info')
-                ->with('mesaj', 'Ödeme işlemi için oturum açmanız veya kullanıcı kaydı yapmanız gerekmektedir.');
+                ->with('mesaj', 'Tölegleri amala aşyrmak üçin ulanyjy hökmünde hasaba girmeli ýa-da hasaba alynmaly.');
         }
         else if (count(Cart::content())==0)
         {
             return  redirect()->route('anasayfa')
                 ->with('mesaj_tur', 'info')
-                ->with('mesaj', 'Ödeme işlemi için sepetinizde bir ürün bulunmalıdır.');
+                ->with('mesaj', 'Töleg üçin sebediňizde haryt bolmaly.');
         }
 
         $kullanici_detay = auth()->user()->detay;
@@ -34,7 +34,7 @@ class OdemeController extends Controller
         $siparis['sepet_id'] = session('aktif_sepet_id');
         $siparis['banka'] = "Garanti";
         $siparis['taksit_sayisi'] = 1;
-        $siparis['durum'] = "Siparişiniz alindı";
+        $siparis['durum'] = "Sargydyňyz alyndy";
         $siparis['siparis_tutari'] = Cart::subtotal();
 
         Siparis::create($siparis);
@@ -43,7 +43,7 @@ class OdemeController extends Controller
 
         return  redirect()->route('siparisler')
             ->with('mesaj_tur', 'success')
-            ->with('mesaj', 'Ödemeniz başarılı bir şekilde gerçekleştirildi.');
+            ->with('mesaj', 'Tölegiňiz üstünlikli kabul edildi.');
 
     }
 

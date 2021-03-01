@@ -1,18 +1,18 @@
 @extends('yonetim.layouts.master')
 @section('title', 'Sipariş Yönetimi')
 @section('content')
-    <h1 class="page-header">Sipariş Yönetimi</h1>
+    <h1 class="page-header">Sargyt Dolandyryşy</h1>
 
     <form method="post" action="{{ route('yonetim.siparis.kaydet', $entry->id) }}">
         {{ csrf_field() }}
 
         <div class="pull-right">
             <button type="submit" class="btn btn-primary">
-                {{ $entry->id > 0 ? "Güncelle" : "Kaydet" }}
+                {{ $entry->id > 0 ? "Täzele" : "Ýatda Sakla" }}
             </button>
         </div>
         <h3 class="sub-header">
-            Sipariş {{ $entry->id > 0 ? "Düzenle" : "Ekle" }}
+            Sipariş {{ $entry->id > 0 ? "Düzediş et" : "Goş" }}
         </h3>
 
         @include('layouts.partials.errors')
@@ -21,19 +21,19 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="adsoyad">Ad Soyad</label>
+                    <label for="adsoyad">Ady</label>
                     <input type="text" class="form-control" id="adsoyad" name="adsoyad" placeholder="Ad Soyad" value="{{ old('adsoyad', $entry->adsoyad) }}">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="telefon">Telefon</label>
+                    <label for="telefon">Öý Telefon</label>
                     <input type="text" class="form-control" id="telefon" name="telefon" placeholder="Telefon" value="{{ old('telefon', $entry->telefon) }}">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="ceptelefonu">Cep Telefonu</label>
+                    <label for="ceptelefonu">Mobil Telefonu</label>
                     <input type="text" class="form-control" id="ceptelefonu" name="ceptelefonu" placeholder="Cep Telefonu" value="{{ old('ceptelefonu', $entry->ceptelefonu) }}">
                 </div>
             </div>
@@ -49,12 +49,12 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
-                    <label for="durum">Durum</label>
+                    <label for="durum">Ýagdaýy</label>
                     <select name="durum" class="form-control" id="durum">
-                        <option {{ old('durum', $entry->durum) == 'Siparişiniz alındı' ? 'selected' : '' }}>Siparişiniz alındı</option>
-                        <option {{ old('durum', $entry->durum) == 'Ödeme onaylandı' ? 'selected' : '' }}>Ödeme onaylandı</option>
-                        <option {{ old('durum', $entry->durum) == 'Kargoya verildi' ? 'selected' : '' }}>Kargoya verildi</option>
-                        <option {{ old('durum', $entry->durum) == 'Sipariş tamamlandı' ? 'selected' : '' }}>Sipariş tamamlandı</option>
+                        <option {{ old('durum', $entry->durum) == 'Siparişiniz alındı' ? 'selected' : '' }}>Sargydyňyz kabul edildi</option>
+                        <option {{ old('durum', $entry->durum) == 'Ödeme onaylandı' ? 'selected' : '' }}>Töleg kabul edildi</option>
+                        <option {{ old('durum', $entry->durum) == 'Kargoya verildi' ? 'selected' : '' }}>Kargo berildi</option>
+                        <option {{ old('durum', $entry->durum) == 'Sipariş tamamlandı' ? 'selected' : '' }}>Sargyt tamamlandy</option>
                     </select>
                 </div>
             </div>
@@ -64,11 +64,11 @@
     <h3>Sipariş (SP-{{ $entry->id }})</h3>
     <table class="table table-bordererd table-hover">
         <tr>
-            <th colspan="2">Ürün</th>
-            <th>Tutar</th>
-            <th>Adet</th>
+            <th colspan="2">Haryt</th>
+            <th>Bahasy</th>
+            <th>Mukdar</th>
             <th>Ara Toplam</th>
-            <th>Durum</th>
+            <th>Ýagdaýy</th>
         </tr>
         @foreach($entry->sepet->sepet_urunler as $sepet_urun)
             <tr>
@@ -89,15 +89,15 @@
             </tr>
         @endforeach
         <tr>
-            <th colspan="4" class="text-right">Toplam Tutar</th>
-            <td colspan="2">{{ $entry->siparis_tutari }} ₺</td>
+            <th colspan="4" class="text-right">Jemi Bahasy</th>
+            <td colspan="2">{{ $entry->siparis_tutari }} TMT</td>
         </tr>
         <tr>
             <th colspan="4" class="text-right">Toplam Tutar (KDV'li)</th>
-            <td colspan="2">{{ $entry->siparis_tutari* ((100+config('cart.tax'))/100) }} ₺</td>
+            <td colspan="2">{{ $entry->siparis_tutari* ((100+config('cart.tax'))/100) }} TMT</td>
         </tr>
         <tr>
-            <th colspan="4" class="text-right">Sipariş Durumu</th>
+            <th colspan="4" class="text-right">Sargyt Ýagdaýy</th>
             <td colspan="2">{{ $entry->durum }}</td>
         </tr>
     </table>

@@ -1,7 +1,7 @@
 @extends('yonetim.layouts.master')
 @section('title', 'Kullanıcı Yönetimi')
 @section('content')
-    <h1 class="page-header">Kullanıcı Yönetimi</h1>
+    <h1 class="page-header">Ulanyjy Dolandyryşy</h1>
 
     <form method="post" action="{{route('yonetim.kullanici.kaydet', $entry->id)}}">
         {{csrf_field()}}
@@ -11,7 +11,7 @@
             {{$entry->id > 0 ? "Güncelle" : "Kaydet"}}
         </button>
         </div>
-        <h3 class="sub-header">Kullanıcı {{$entry->id > 0 ? "Düzenle" : "Ekle"}}
+        <h3 class="sub-header">Ulanyjy {{$entry->id > 0 ? "Düzenle" : "Ekle"}}
         </h3>
 
         @include('layouts.partials.errors')
@@ -20,19 +20,19 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="adsoyad">Ad Soyad</label>
+                    <label for="adsoyad">Ady</label>
                     <input type="text" class="form-control" id="adsoyad"  name="adsoyad" placeholder="Ad Soyad" value="{{old('adsoyad', $entry->adsoyad)}}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">E-mail</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{old('email', $entry->email)}}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="sifre">Şifre</label>
+                    <label for="sifre">Parol</label>
                     <input type="password" class="form-control" id="sifre"  name="sifre" placeholder="Şifre">
                 </div>
             </div>
@@ -48,7 +48,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="telefon">Telefon</label>
+                    <label for="telefon">Öý Telefon</label>
                     <input type="text" class="form-control" id="telefon" name="telefon" placeholder="Telefon" value="{{old('telefon', $entry->detay->telefon)}}">
                 </div>
             </div>
@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="ceptelefonu">Cep Telefon</label>
+                    <label for="ceptelefonu">Mobil Telefon</label>
                     <input type="text" class="form-control" id="ceptelefonu" name="ceptelefonu" placeholder="Cep Telefon" value="{{old('ceptelefonu', $entry->detay->ceptelefonu)}}">
                 </div>
             </div>

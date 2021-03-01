@@ -1,22 +1,22 @@
 @extends('yonetim.layouts.master')
 @section('title', 'Kullanıcı Yönetimi')
 @section('content')
-    <h1 class="page-header">Kullanıcı Yönetimi</h1>
+    <h1 class="page-header">Ulanyjy Dolandyryşy</h1>
 
-    <h3 class="sub-header">Kullanıcı Listesi</h3>
+    <h3 class="sub-header">Ulanyjy Sanawy</h3>
     <div class="well">
         <div class="btn-group pull-right" >
-            <a href="{{ route('yonetim.kullanici.yeni') }}" class="btn btn-primary">Yeni</a>
+            <a href="{{ route('yonetim.kullanici.yeni') }}" class="btn btn-primary">Täze</a>
         </div>
         <form method="post" action="{{ route('yonetim.kullanici') }}"  class="form-inline">
             {{csrf_field()}}
             <div class="form-group">
-                <label for="aranan">Ara</label>
+                <label for="aranan">Gözleg</label>
                 <input type="text" class="form-control form-control-sm" name="aranan" id="aranan" placeholder="Ad, Email Ara..."
                        value="{{old('aranan')}}">
             </div>
-            <button type="submit" class="btn btn-primary">Ara</button>
-            <a href="{{route('yonetim.kullanici')}}" class="btn btn-primary">Temizle</a>
+            <button type="submit" class="btn btn-primary">Gözleg</button>
+            <a href="{{route('yonetim.kullanici')}}" class="btn btn-primary">Arassala</a>
         </form>
     </div>
 
@@ -27,17 +27,17 @@
             <thead class="thead-dark">
             <tr>
                 <th>#</th>
-                <th>Ad Soyad</th>
-                <th>Email</th>
+                <th>Ady</th>
+                <th>E-mail</th>
                 <th>Aktif Mi</th>
-                <th>Kullanıcı Tipi</th>
-                <th>Kayıt Tarihi</th>
+                <th>Ulanyjy Görnüşü</th>
+                <th>Hasaba alnan senesi</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             @if(count($list)== 0)
-                <tr><td colspan="7" class="text-center">Kayıt bulunamadı!</td></tr>
+                <tr><td colspan="7" class="text-center">Ýazgy Tapylmady!</td></tr>
             @endif
             @foreach($list as $entry)
             <tr>

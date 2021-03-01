@@ -1,22 +1,22 @@
 @extends('yonetim.layouts.master')
 @section('title', 'Kategori Yönetimi')
 @section('content')
-    <h1 class="page-header">Kategori Yönetimi</h1>
+    <h1 class="page-header">Kategoriýany Dolandyrmak</h1>
 
-    <h3 class="sub-header">Kategori Listesi</h3>
+    <h3 class="sub-header">Kategoriýa Sanawy</h3>
     <div class="well">
         <div class="btn-group pull-right" >
-            <a href="{{ route('yonetim.kategori.yeni') }}" class="btn btn-primary">Yeni</a>
+            <a href="{{ route('yonetim.kategori.yeni') }}" class="btn btn-primary">Täze</a>
         </div>
         <form method="post" action="{{ route('yonetim.kategori') }}"  class="form-inline">
             {{csrf_field()}}
             <div class="form-group">
-                <label for="aranan">Ara</label>
+                <label for="aranan">Gözleg</label>
                 <input type="text" class="form-control form-control-sm" name="aranan" id="aranan"
                        placeholder="Kategori Ara..."  value="{{old('aranan')}}">
                 <label for="ust_id">Üst Kategori</label>
                 <select name="ust_id" id="ust_id" class="form-control">
-                    <option value="">Seçiniz</option>
+                    <option value="">Saýlaň</option>
                     @foreach($anakategoriler as $kategori)
                         <option value="{{ $kategori->id }}" {{old('ust_id') == $kategori->id ? 'selected': ''}}>{{ $kategori->kategori_adi }}</option>
                     @endforeach
@@ -36,14 +36,14 @@
                 <th>#</th>
                 <th>Üst Kategori</th>
                 <th>Slug</th>
-                <th>Kategori Adı</th>
-                <th>Kayıt Tarihi</th>
+                <th>Kategoriýa Ady</th>
+                <th>Hasaba alnan senesi</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             @if(count($list)== 0)
-                <tr><td colspan="6" class="text-center">Kayıt bulunamadı!</td></tr>
+                <tr><td colspan="6" class="text-center">Ýazgy tapylmady!</td></tr>
             @endif
             @foreach($list as $entry)
             <tr>

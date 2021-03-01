@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="{{ route('anasayfa') }}">Anasayfa</a></li>
+            <li><a href="{{ route('anasayfa') }}">Baş Sahypa</a></li>
             @foreach($kategoriler as $kategori)
             <li><a href="{{route('kategori', $kategori->slug)}}">{{$kategori->kategori_adi}}</a></li>
             @endforeach
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-md-7">
                     <h1>{{ $urun->urun_adi }}</h1>
-                    <p class="price">{{ round($urun->fiyati, 2) }} ₺</p>
+                    <p class="price">{{ round($urun->fiyati, 2) }} TMT</p>
                     <form action="{{ route('sepet.ekle') }}" method="post">
                     {{ csrf_field() }}
                         <select name="adet" class="form-control pull-left" style="width: 100px; margin-right: 10px;">
@@ -37,19 +37,19 @@
                             <option>3</option>
                         </select>
                         <input  type="hidden" name="id" value="{{$urun->id}}">
-                        <input type="submit" class="btn btn-theme" value="Sepete Ekle">
+                        <input type="submit" class="btn btn-theme" value="Sebede Goş">
                     </form>
                 </div>
             </div>
 
             <div>
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#t1" data-toggle="tab">Ürün Açıklaması</a></li>
-                    <li role="presentation"><a href="#t2" data-toggle="tab">Yorumlar</a></li>
+                    <li role="presentation" class="active"><a href="#t1" data-toggle="tab">Harydyň beýany</a></li>
+                    <li role="presentation"><a href="#t2" data-toggle="tab">Teswirler</a></li>
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="t1">{{ $urun->aciklama }}</div>
-                    <div role="tabpanel" class="tab-pane" id="t2"> Henüz yorum yapılmadı!</div>
+                    <div role="tabpanel" class="tab-pane" id="t2"> Entek teswir ýok!</div>
                 </div>
             </div>
 

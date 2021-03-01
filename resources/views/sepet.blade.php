@@ -3,16 +3,16 @@
 @section('content')
     <div class="container">
         <div class="bg-content">
-            <h2>Sepet</h2>
+            <h2>Sebet</h2>
             @include('layouts.partials.alert')
 
             @if(count(Cart::content())>0)
             <table class="table table-bordererd table-hover">
                 <tr>
-                    <th colspan="2">Ürün</th>
-                    <th>Adet Fiyatı</th>
-                    <th>Adet</th>
-                    <th>Tutar</th>
+                    <th colspan="2">Haryt</th>
+                    <th>Harydyň Bahasy</th>
+                    <th>Mukdary</th>
+                    <th>Bahasy</th>
                 </tr>
                 @foreach(Cart::content() as $urunCartItem)
                 <tr>
@@ -30,7 +30,7 @@
                         <form action="{{ route('sepet.kaldir', $urunCartItem->rowId) }}" method="post" >
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <input type="submit" class="btn btn-danger btn-xs" value="Sepetten Kaldır">
+                            <input type="submit" class="btn btn-danger btn-xs" value="Sebetden Çykar">
                         </form>
                     </td>
 
@@ -45,16 +45,16 @@
                     </td>
                 </tr>
                 @endforeach
+{{--                <tr>--}}
+{{--                    <th colspan="4" class="text-right">Alt Toplam</th>--}}
+{{--                    <td class="text-right">{{Cart::subtotal()}} TMT</td>--}}
+{{--                </tr>--}}
+{{--                <tr>--}}
+{{--                    <th colspan="4" class="text-right">KDV</th>--}}
+{{--                    <td class="text-right">{{Cart::tax()}} TMT</td>--}}
+{{--                </tr>--}}
                 <tr>
-                    <th colspan="4" class="text-right">Alt Toplam</th>
-                    <td class="text-right">{{Cart::subtotal()}} TMT</td>
-                </tr>
-                <tr>
-                    <th colspan="4" class="text-right">KDV</th>
-                    <td class="text-right">{{Cart::tax()}} TMT</td>
-                </tr>
-                <tr>
-                    <th colspan="4" class="text-right">Genel Toplam</th>
+                    <th colspan="4" class="text-right">Jemi Töleg</th>
                     <td class="text-right">{{Cart::total()}} TMT</td>
                 </tr>
 
@@ -63,11 +63,11 @@
             <form action="{{ route('sepet.bosalt') }}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <input type="submit" class="btn btn-info pull-left" value="Sepeti Boşalt">
+                <input type="submit" class="btn btn-info pull-left" value="Sebedi Boşalt">
             </form>
-                <a href="{{ route('odeme') }}" class="btn btn-success pull-right btn-lg">Ödeme Yap</a>
+                <a href="{{ route('odeme') }}" class="btn btn-success pull-right btn-lg">Töleg et</a>
             @else
-                <p>Sepetinizde ürün yok!</p>
+                <p>Sebediňizde haryt yok!</p>
             @endif
 
         </div>

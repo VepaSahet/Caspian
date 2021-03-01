@@ -1,18 +1,18 @@
 @extends('yonetim.layouts.master')
 @section('title', 'Sipariş Yönetimi')
 @section('content')
-    <h1 class="page-header">Sipariş Yönetimi</h1>
+    <h1 class="page-header">Sargyt Dolandyryşy</h1>
 
-    <h3 class="sub-header">Sipariş Listesi</h3>
+    <h3 class="sub-header">Sargyt sanawy</h3>
     <div class="well">
         <form method="post" action="{{ route('yonetim.siparis') }}" class="form-inline">
             {{ csrf_field() }}
             <div class="form-group">
-                <label for="aranan">Ara</label>
+                <label for="aranan">Gözleg</label>
                 <input type="text" class="form-control form-control-sm" name="aranan" id="aranan" placeholder="Sipariş Ara..." value="{{ old('aranan') }}">
             </div>
-            <button type="submit" class="btn btn-primary">Ara</button>
-            <a href="{{ route('yonetim.siparis') }}" class="btn btn-primary">Temizle</a>
+            <button type="submit" class="btn btn-primary">Gözleg</button>
+            <a href="{{ route('yonetim.siparis') }}" class="btn btn-primary">Arassala</a>
         </form>
     </div>
 
@@ -22,18 +22,18 @@
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
             <tr>
-                <th>Sipariş Kodu</th>
+                <th>Sargyt Nomeri</th>
                 <th>Müşteri</th>
-                <th>Tutar</th>
-                <th>Durum</th>
-                <th>Sipariş Tarihi</th>
+                <th>Jemi</th>
+                <th>Ýagdaýy</th>
+                <th>Hasaba alnan senesi</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             @if (count($list) == 0)
                 <tr>
-                    <td colspan="7" class="text-center">Kayıt bulunamadı!</td>
+                    <td colspan="7" class="text-center">Ýazgy tapylmady!</td>
                 </tr>
             @endif
             @foreach ($list as $entry)

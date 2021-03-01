@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Urun;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
 
 
 class AnasayfaController extends Controller

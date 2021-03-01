@@ -19,16 +19,16 @@ class KategoriController extends Controller
             $urunler = $kategori->urunler()
                 ->join('urun_detay', 'urun_detay.urun_id', 'urun.id')
                 ->orderBy('urun_detay.goster_cok_satan', 'desc')
-                ->paginate(3);
+                ->paginate(4);
 
         }else if ($order == 'yeni'){
             $urunler = $kategori->urunler()
                 ->orderByDesc('guncelleme_tarihi')
-                ->paginate(3);
+                ->paginate(4);
         }else {
             $urunler = $kategori->urunler()
                 ->orderByDesc('guncelleme_tarihi')
-                ->paginate(3);
+                ->paginate(4);
         }
 
         if (request('page') > $urunler->lastPage())

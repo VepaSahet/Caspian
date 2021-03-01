@@ -32,7 +32,7 @@ class KullaniciController extends Controller
                 return redirect()->route('yonetim.anasayfa');
             }
             else {
-                return back()->withInput()->withErrors(['email'=>'Giriş hatalı!']);
+                return back()->withInput()->withErrors(['email'=>'Giriş nädogry!']);
             }
         }
         return view('yonetim.oturumac');
@@ -104,7 +104,7 @@ class KullaniciController extends Controller
         );
         return redirect()
             ->route('yonetim.kullanici.duzenle', $entry->id)
-            ->with('mesaj', ($id > 0 ? 'Güncellendi' : 'Kaydedildi'))
+            ->with('mesaj', ($id > 0 ? 'Täzelendi' : 'Hasaba alyndy'))
             ->with('mesaj_tur', 'success');
     }
 
@@ -114,7 +114,7 @@ class KullaniciController extends Controller
 
         return redirect()
             ->route('yonetim.kullanici')
-            ->with('mesaj','Kayıt silindi')
+            ->with('mesaj','Hasaba alyş öçürildi')
             ->with('mesaj_tur', 'success');
     }
 }

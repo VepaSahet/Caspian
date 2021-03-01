@@ -1,7 +1,7 @@
 @extends('yonetim.layouts.master')
 @section('title', 'Kategori Yönetimi')
 @section('content')
-    <h1 class="page-header">Kategori Yönetimi</h1>
+    <h1 class="page-header">Kategoriýany Dolandyrmak</h1>
 
     <form method="post" action="{{route('yonetim.kategori.kaydet', $entry->id)}}">
         {{csrf_field()}}

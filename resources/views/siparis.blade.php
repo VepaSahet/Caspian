@@ -4,16 +4,16 @@
     <div class="container">
         <div class="bg-content">
             <a  href="{{ route('siparisler') }}" class="btn btn-xs btn-primary">
-                <i class="glyphicon glyphicon-arrow-left"></i> Siparişlere Dön
+                <i class="glyphicon glyphicon-arrow-left"></i> Sargytlara geç
             </a>
-            <h2>Sipariş (Sargyt-{{ $siparis->id }})</h2>
+            <h2>Sargyt (Sargyt-{{ $siparis->id }})</h2>
             <table class="table table-bordererd table-hover">
                 <tr>
-                    <th colspan="2">Ürün</th>
-                    <th>Tutar</th>
-                    <th>Adet</th>
+                    <th colspan="2">Haryt</th>
+                    <th>Jemi</th>
+                    <th>Mukdar</th>
                     <th>Ara Toplam</th>
-                    <th>Durum</th>
+                    <th>Ýagdaýy</th>
                 </tr>
                 @foreach($siparis->sepet->sepet_urunler as $sepet_urun)
                 <tr>
@@ -34,7 +34,7 @@
                 </tr>
                 @endforeach
                 <tr>
-                    <th colspan="4" class="text-right">Toplam Tutar</th>
+                    <th colspan="4" class="text-right">Jemi Baha</th>
                     <td colspan="2">{{ $siparis->siparis_tutari }} TMT</td>
                 </tr>
                 <tr>
@@ -42,7 +42,7 @@
                     <td colspan="2">{{ $siparis->siparis_tutari* ((100+config('cart.tax'))/100) }} TMT</td>
                 </tr>
                 <tr>
-                    <th colspan="4" class="text-right">Sipariş Durumu</th>
+                    <th colspan="4" class="text-right">Sargyt Ýagdaýy</th>
                     <td colspan="2">{{ $siparis->durum }} </td>
                 </tr>
             </table>

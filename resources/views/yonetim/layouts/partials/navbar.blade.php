@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Laravel Ecommerce</a>
+            <a class="navbar-brand" href="#">Caspian</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -21,7 +21,7 @@
                     <a href="{{ route('yonetim.anasayfa') }}">Giriş</a>
                 </li>
                 <li>
-                    <a href="#">Ayarlar</a>
+                    <a href="#">Sazlamalar</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -31,11 +31,11 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">Action</a>
+                            <a href="#">Hereket</a>
                         </li>
                         <li role="separator" class="divider"></li>
                         <li>
-                            <a href="{{ route('yonetim.oturumukapat') }}">Oturumu Kapat</a>
+                            <a href="{{ route('yonetim.oturumukapat') }}">Çykyş</a>
                         </li>
                     </ul>
                 </li>

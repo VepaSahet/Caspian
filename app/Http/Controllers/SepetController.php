@@ -34,13 +34,13 @@ class SepetController extends Controller
 
             SepetUrun::updateOrCreate(
                 ['sepet_id' => $aktif_sepet_id, 'urun_id' => $urun->id],
-                ['adet'=> $cartItem->qty, 'fiyati'=> $urun->fiyati, 'durum'=> 'Beklemede']
+                ['adet'=> $cartItem->qty, 'fiyati'=> $urun->fiyati, 'durum'=> 'bekleyen_siparis']
             );
         }
 
         return redirect()->route('sepet')
             ->with('mesaj_tur', 'success')
-            ->with('mesaj', 'Ürün sepete eklendi.');
+            ->with('mesaj', 'Haryt sebede goşuldy.');
     }
 
     public function kaldir($rowid)
@@ -56,7 +56,7 @@ class SepetController extends Controller
 
         return redirect()->route('sepet')
             ->with('mesaj_tur', 'success')
-            ->with('mesaj', 'Ürün sepetten kaldırıldı.');
+            ->with('mesaj', 'Haryt sebetden aýryldy.');
     }
 
     public function bosalt()
@@ -70,7 +70,7 @@ class SepetController extends Controller
         Cart::destroy();
         return redirect()->route('sepet')
             ->with('mesaj_tur', 'success')
-            ->with('mesaj', 'Sepetiniz boşaltıldı.');
+            ->with('mesaj', 'Sebediniz boş.');
     }
 
     public function guncelle($rowid)
@@ -82,7 +82,7 @@ class SepetController extends Controller
         if ($validator->fails())
         {
             session()->flash('mesaj_tur', 'danger');
-            session()->flash('mesaj', 'Adet değeri 1 ile 10 arasında olabilir!');
+            session()->flash('mesaj', 'Sargyt mukdary 1 bilen 10 aralygynda bolup biler!');
             return response()->json(['success'=>false]);
         }
 
@@ -102,7 +102,7 @@ class SepetController extends Controller
         Cart::update($rowid, request('adet'));
 
         session()->flash('mesaj_tur', 'success');
-        session()->flash('mesaj', 'Adet bilgisi güncellendi');
+        session()->flash('mesaj', 'Mukdar maglumatlary täzelendi');
 
         return response()->json(['success'=>true]);
     }

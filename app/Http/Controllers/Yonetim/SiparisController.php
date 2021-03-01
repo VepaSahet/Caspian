@@ -54,7 +54,7 @@ class SiparisController extends Controller
 
         return redirect()
             ->route('yonetim.siparis.duzenle', $entry->id)
-            ->with('mesaj', 'Güncellendi')
+            ->with('mesaj', 'Täzelendi')
             ->with('mesaj_tur', 'success');
     }
 
@@ -64,7 +64,7 @@ class SiparisController extends Controller
 
         return redirect()
             ->route('yonetim.siparis')
-            ->with('mesaj', 'Kayıt silindi')
+            ->with('mesaj', 'Hasaba alyş öçürildi')
             ->with('mesaj_tur', 'success');
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="{{route('anasayfa')}}">Anasayfa</a></li>
+            <li><a href="{{route('anasayfa')}}">Baş Sahypa</a></li>
             <li class="active">{{ $kategori->kategori_adi }}</li>
         </ol>
         <div class="row">
@@ -11,7 +11,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">{{ $kategori->kategori_adi }}</div>
                     <div class="panel-body">
-                        Toplam {{ $kategori->urunler->count() }} ürün var.
+                        Jemi {{ $kategori->urunler->count() }} haryt bar.
                         <hr>
                         @if (count($alt_kategoriler)>0)
                     </div>
@@ -22,22 +22,22 @@
                                 {{ $ust_kategori->kategori_adi }}
                             </a>
                         @endif
-                            {{ $kategori->kategori_adi }} kategorisinde başka alt kategori bulunmuyor.
+                            {{ $kategori->kategori_adi }} kategoriýasynda başga kiçi kategoriýa ýok.
                     @endif
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-15">
                 <div class="products bg-content">
                     @if (count($urunler)>0)
-                    Sırala
-                    <a href="?order=coksatanlar" class="btn btn-default">Çok Satanlar</a>
-                    <a href="?order=yeni" class="btn btn-default">Yeni Ürünler</a>
+                        Tertiple
+                    <a href="?order=coksatanlar" class="btn btn-default">Köp Görülenler</a>
+                    <a href="?order=yeni" class="btn btn-default">Täze Harytlar</a>
                     <hr>
                     @endif
                     <div class="row">
                         @if (count($urunler)==0)
-                            <div class="col-md-12">Bu kategoride henüz ürün bulunmamaktadır!</div>
+                            <div class="col-md-12">Bu kategoriýada entek haryt ýok!</div>
                         @endif
                             @foreach($urunler as $urun)
                                 <div class="col-md-3 product">
@@ -46,7 +46,12 @@
                                     </a>
                                     <p><a href="{{ route('urun', $urun->slug) }}">{{ $urun->urun_adi }}</a></p>
                                     <p class="price">{{ round($urun->fiyati, 2) }} TMT</p>
-                                    <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                                    <form action="{{ route('sepet.ekle') }}" method="post">
+                                        {{ csrf_field() }}
+                                        <input  type="hidden" name="adet" value="1" >
+                                        <input  type="hidden" name="id" value="{{$urun->id}}">
+                                        <input type="submit" class="btn btn-theme" value="Sepete Ekle">
+                                    </form>
                                 </div>
                             @endforeach
                     </div>

@@ -66,7 +66,7 @@ class KategoriController extends Controller
 
         return redirect()
             ->route('yonetim.kategori.duzenle', $entry->id)
-            ->with('mesaj', ($id > 0 ? 'Güncellendi' : 'Kaydedildi'))
+            ->with('mesaj', ($id > 0 ? 'Täzelendi' : 'Hasaba alyndy'))
             ->with('mesaj_tur','success');
     }
 
@@ -78,7 +78,7 @@ class KategoriController extends Controller
         {
             return redirect()
                 ->route('yonetim.kategori')
-                ->with('mesaj', "Bu kategoride $kategori_urun_adet adet ürün var. Bu yüzden silme işlemi yapılmamıştır.")
+                ->with('mesaj', "Bu kategoriýada $kategori_urun_adet sany haryt bar.Bu sebäpden kategoriýany pozup bolmaýar!")
                 ->with('mesaj_tur', 'warning');
         }
         $kategori->urunler()->detach();
@@ -86,7 +86,7 @@ class KategoriController extends Controller
 
         return redirect()
             ->route('yonetim.kategori')
-            ->with('mesaj','Kayıt silindi')
+            ->with('mesaj','Hasaba alyş öçürildi')
             ->with('mesaj_tur', 'success');
     }
 }

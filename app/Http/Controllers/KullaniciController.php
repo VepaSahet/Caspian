@@ -53,7 +53,7 @@ class KullaniciController extends Controller
                     $sepetUrun = SepetUrun::firstOrNew(['sepet_id' => $aktif_sepet_id, 'urun_id' => $cartItem->id]);
                     $sepetUrun->adet += $cartItem->qty;
                     $sepetUrun->fiyati = $cartItem->price;
-                    $sepetUrun->durum = "Beklemede";
+                    $sepetUrun->durum = "bekleyen_siparis";
                     $sepetUrun->save();
                 }
             }
@@ -68,7 +68,7 @@ class KullaniciController extends Controller
 
            return redirect()->intended('/');
         }else {
-            $errors = ['email'=>'Hatalı giriş'];
+            $errors = ['email'=>'Nädogry giriş'];
             return back()->withErrors($errors);
         }
     }
@@ -112,12 +112,12 @@ class KullaniciController extends Controller
             $kullanici->aktif_mi = 1;
             $kullanici->save();
             return redirect()->to('/')
-                ->with('mesaj', 'Kullanıcı kaydınız aktifleştirildi')
+                ->with('mesaj', 'Hasabyňyz aktiwleşdirildi')
                 ->with('mesaj_tur', 'success');
         }
         else {
             return redirect()->to('/')
-                ->with('mesaj', 'Kullanıcı kaydınız aktifleştirilmedi')
+                ->with('mesaj', 'Hasabyňyz aktiwleşdirilmedi')
                 ->with('mesaj_tur', 'warning');
         }
     }
