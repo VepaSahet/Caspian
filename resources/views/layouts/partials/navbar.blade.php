@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{route('anasayfa')}}">
-                <img src="/img/logo.png">
+                <img style="width: 240px; height: auto" src="/img/logo.png">
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->

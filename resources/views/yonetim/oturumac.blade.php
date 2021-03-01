@@ -11,7 +11,7 @@
 <div class="container">
     <form class="form-signin" action="{{ route('yonetim.oturumac') }}" method="post">
         {{csrf_field()}}
-        <img src="/img/logo.png" class="logo">
+        <img style="width: 240px; height: auto" src="/img/logo.png" class="logo">
 
         @include('layouts.partials.errors')
 
